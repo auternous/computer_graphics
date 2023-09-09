@@ -1,0 +1,15 @@
+#canvas{
+    border: 3px solid black;
+    display: block;
+    margin: 0 auto;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.drawPart{
+    display: flex;
+    text-align: center;
+    margin: 15px;
+    align-items: center;
+}
