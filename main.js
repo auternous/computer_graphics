@@ -2,6 +2,7 @@
 //canvas.height = (window.innerHeight * 95) / 100;
 const centerX = canvas.width / 2;
 const centerY = canvas.height / 2;
+
 let ctx = document.getElementById("canvas").getContext("2d");
 // функция перевода координат из мировых в экранные
 function getNewMatrix(part) {
@@ -12,6 +13,40 @@ function getNewMatrix(part) {
         newM[i][1] = Math.round(centerY - part[i][1] * 10);
         newM[i][2] = 1;
     }
+    ctx.strokeStyle = "#000";
+ctx.lineWidth = 1;
+
+// рисуем ось X
+ctx.beginPath();
+ctx.moveTo(0, centerY);
+ctx.lineTo(canvas.width, centerY);
+ctx.stroke();
+
+// рисуем стрелку на оси X
+ctx.beginPath();
+ctx.moveTo(canvas.width - 10, centerY - 5);
+ctx.lineTo(canvas.width, centerY);
+ctx.lineTo(canvas.width - 10, centerY + 5);
+ctx.stroke();
+
+// подписываем ось X
+ctx.fillText("X", canvas.width - 20, centerY + 20);
+
+// рисуем ось Y
+ctx.beginPath();
+ctx.moveTo(centerX, 0);
+ctx.lineTo(centerX, canvas.height);
+ctx.stroke();
+
+// рисуем стрелку на оси Y
+ctx.beginPath();
+ctx.moveTo(centerX - 5, 10);
+ctx.lineTo(centerX, 0);
+ctx.lineTo(centerX + 5, 10);
+ctx.stroke();
+
+// подписываем ось Y
+ctx.fillText("Y", centerX - 20, 20);
     return newM;
 }
 class Cat {
@@ -20,7 +55,7 @@ class Cat {
         console.log(arr)
         for (let i = 0; i < arr.length - 1; i++) {
             ctx.beginPath();
-            ctx.strokeStyle = "black";
+            ctx.strokeStyle = "blue";
             ctx.lineWidth = "4";
             ctx.moveTo(arr[i][0], arr[i][1]); //координаты начала линии
             ctx.lineTo(arr[i + 1][0], arr[i + 1][1]); // координаты конца линии
@@ -28,6 +63,7 @@ class Cat {
         }
     }
 }
+
 //----------------------------Матрицы перемещения-------------------------------
 let B = [
     [1,   0, 0],
@@ -66,16 +102,11 @@ function MultiplyMatrix(A, B) {
     return A;
 }
 let myCat = new Cat();
-myCat.draw(mLEar);
-myCat.draw(mREar);
-myCat.draw(mHead);
-myCat.draw(mLEye);
-myCat.draw(mREye);
-myCat.draw(mNose);
-myCat.draw(mTail);
-myCat.draw(mBody);
-myCat.draw(mLFoot);
-myCat.draw(mRFoot);
+myCat.draw(corpus);
+myCat.draw(roof);
+myCat.draw(pipe);
+myCat.draw(cab);
+
 let k = 1;
 // ---------------------Работа с объектом------------------------
 document.addEventListener("keydown", function (event) {
